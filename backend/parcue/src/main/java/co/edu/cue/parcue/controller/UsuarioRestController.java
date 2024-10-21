@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class UsuarioRestController {
 		return ResponseEntity.ok(usuarioService.crearUsuario(usuarioIn));
 	}
 	
-	@PostMapping("/actualizarUsuario")
+	@PutMapping("/actualizarUsuario")
 	public ResponseEntity<UsuarioDTO> actualizarUsuario(@RequestBody UsuarioDTO usuarioIn) {
 		return ResponseEntity.ok(usuarioService.actualizarUsuario(usuarioIn));
 	}

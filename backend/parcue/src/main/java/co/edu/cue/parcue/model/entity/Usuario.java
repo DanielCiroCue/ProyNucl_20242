@@ -33,7 +33,7 @@ public class Usuario {
 	@Column(unique = true, length = 50, nullable = false)
 	private String usuario;
 
-	@Column(length = 50, nullable = false)
+	@Column(length = 250, nullable = false)
 	private String pass;
 
 	@ManyToOne(fetch = FetchType.EAGER)
