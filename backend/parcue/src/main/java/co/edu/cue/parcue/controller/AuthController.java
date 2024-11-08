@@ -38,7 +38,8 @@ public class AuthController {
 
 			// Retornar respuesta de éxito
 			Map<String, String> response = new HashMap<>();
-			response.put("message", "Login successful");
+			String rol = authentication.getAuthorities().stream().findFirst().orElse(null).getAuthority();
+			response.put("rol", rol);
 
 			// Retornar la respuesta como JSON
 			return ResponseEntity.ok(response);

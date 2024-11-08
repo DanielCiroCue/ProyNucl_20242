@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../sevices/auth-service.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { LoginDTO } from '../../model/login-dto-model';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,16 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password).subscribe({
-        next: () => {
-          this.router.navigate(['/gestion/solicitud']);
+      const loginDTO : LoginDTO = this.loginForm.value;
+      this.authService.login(loginDTO).subscribe({
+        next: (data) => {
+          sessionStorage.setItem('rol', data.rol);
+
+          if (data.rol==='MASTER') {
+            this.router.navigate(['/gestion/solicitud']);            
+          }else{
+            this.router.navigate(['/public/login']); 
+          }
         },
         error: (er) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: er.error['message'] });

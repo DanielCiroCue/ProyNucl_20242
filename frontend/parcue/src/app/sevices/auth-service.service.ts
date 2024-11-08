@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Constants } from '../util/constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LoginDTO } from '../model/login-dto-model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(this.url+'login', { username, password });
+  login(loginDTO: LoginDTO): Observable<any> {
+    return this.http.post(this.url + 'login', loginDTO);
   }
 }
